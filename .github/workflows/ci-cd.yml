@@ -68,7 +68,9 @@ jobs:
           context: .
           file: ./apps/api/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/exp9-api:latest,${{ secrets.DOCKERHUB_USERNAME }}/exp9-api:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/exp9-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/exp9-api:${{ github.sha }}
 
       - name: Build and push WEB image
         uses: docker/build-push-action@v6
@@ -76,4 +78,6 @@ jobs:
           context: .
           file: ./apps/web/Dockerfile
           push: true
-tags: ${{ secrets.DOCKERHUB_USERNAME }}/exp9-web:latest,${{ secrets.DOCKERHUB_USERNAME }}/exp9-web:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/exp9-web:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/exp9-web:${{ github.sha }}
